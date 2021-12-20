@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b006710e-0657-4f24-9e64-fe19374fbde1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/RoundController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/ProgressionSystem/ProgressionSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/DestractablePart.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/UI/HourglassAnimation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/UI/ProgressionCountUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/UI/ArenasListPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/MatchController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Bullet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Gun.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Shooter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Arena/Arena.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_LOGIC/UI/ArenaCard.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/ShootingController.cs" />
+        <option value="$PROJECT_DIR$/Assets/BulletTarget.cs" />
+        <option value="$PROJECT_DIR$/Assets/Gunner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Gun.cs" />
+        <option value="$PROJECT_DIR$/Assets/GunTarget.cs" />
+        <option value="$PROJECT_DIR$/Assets/PhysicalUnit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Bullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/SniperScopeDistance.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoundController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Health.cs" />
+        <option value="$PROJECT_DIR$/Assets/Shooter.cs" />
+        <option value="$PROJECT_DIR$/Assets/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Arena/Arena.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/Health.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/Bullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/RoundController.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Arena/MatchController.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/Shooter.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/ShootingCondition.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/UI/HourglassAnimation.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/UI/ProgressionCountUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/ProgressionSystem/ProgressionSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MatchSearchingPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/UI/ArenaCard.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/UI/ArenasListPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/DestractablePart.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Bullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Shooter.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/MatchController.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/RoundController.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/_LOGIC/MainGameplay/Shooting/Player.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="22KqxDpJxIkcxWP43v2Qa2BCnlG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2384">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="2384" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b006710e-0657-4f24-9e64-fe19374fbde1" name="Default Changelist" comment="" />
+      <created>1639596870584</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639596870584</updated>
+      <workItem from="1639596872101" duration="19028000" />
+      <workItem from="1639684706938" duration="80458000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="WindowStateProjectService">
+    <state width="2517" height="507" key="GridCell.Tab.0.bottom" timestamp="1640021337002">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1640021337002" />
+    <state width="2517" height="507" key="GridCell.Tab.0.center" timestamp="1640021337001">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1640021337001" />
+    <state width="2517" height="507" key="GridCell.Tab.0.left" timestamp="1640021337001">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1640021337001" />
+    <state width="2517" height="507" key="GridCell.Tab.0.right" timestamp="1640021337002">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1640021337002" />
+    <state width="2517" height="507" key="GridCell.Tab.1.bottom" timestamp="1640021390911">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1640021390911" />
+    <state width="2517" height="507" key="GridCell.Tab.1.center" timestamp="1640021390911">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1640021390911" />
+    <state width="2517" height="507" key="GridCell.Tab.1.left" timestamp="1640021390911">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1640021390911" />
+    <state width="2517" height="507" key="GridCell.Tab.1.right" timestamp="1640021390911">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1640021390911" />
+    <state width="2517" height="507" key="GridCell.Tab.2.bottom" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.2.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.2.center" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.2.center/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.2.left" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.2.left/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.2.right" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.2.right/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.3.bottom" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.3.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.3.center" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.3.center/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.3.left" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.3.left/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state width="2517" height="507" key="GridCell.Tab.3.right" timestamp="1640021336963">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="507" key="GridCell.Tab.3.right/0.0.2560.1400@0.0.2560.1400" timestamp="1640021336963" />
+    <state x="1652" y="427" key="RiderGenerateDialog" timestamp="1639975414811">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1652" y="427" key="RiderGenerateDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1639975414811" />
+    <state x="937" y="331" key="run.anything.popup" timestamp="1639725449097">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="937" y="331" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1639725449097" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="_camera.transform.parent" language="C#" custom="RiderImportsList:" />
+        <watch expression="(transform.position - _targetPos).magnitude &lt; _cameraStopDistance" language="C#" custom="RiderImportsList:" />
+        <watch expression="_targetPos" language="C#" custom="RiderImportsList:" />
+        <watch expression="transform.position" language="C#" custom="RiderImportsList:" />
+        <watch expression="shootPoint" language="C#" custom="RiderImportsList:" />
+        <watch expression="hit" language="C#" custom="RiderImportsList:" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
