@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : Shooter
 {
@@ -37,7 +39,8 @@ public class Enemy : Shooter
         yield return new WaitForSeconds(3f);
 
         StartAiming();
-
+        _animator.SetTrigger("Aim");
+        
         var time = 0f;
 
         var targets = GetRandomTargetPoints(5);
@@ -154,5 +157,11 @@ public class Enemy : Shooter
         _shooterModel.SetActive(true);
         var bullet = _gun.Shoot(shootPoint, shootTarget, _camera);
         onShoot?.Invoke(bullet);
+    }
+
+    private void LateUpdate()
+    {
+        _animator.transform.localPosition = Vector3.zero;
+        _animator.transform.localEulerAngles = Vector3.zero;
     }
 }

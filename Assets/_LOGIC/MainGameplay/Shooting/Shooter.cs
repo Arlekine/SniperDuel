@@ -71,8 +71,8 @@ public class Shooter : MonoBehaviour
 
     public virtual void SetReadyToAim()
     {
-        transform.position = shootingPos.position;
-        transform.rotation = shootingPos.rotation;
+        transform.DOMove(shootingPos.position, 1f).SetEase(Ease.Linear);
+        transform.DORotate(shootingPos.eulerAngles, 1f).SetEase(Ease.Linear);
         
         var currentPos = transform.position;
         currentPos.y = _currentTarget.transform.position.y;
@@ -81,17 +81,17 @@ public class Shooter : MonoBehaviour
         
         _initialCameraSequence?.Kill();
         _initialCameraSequence = DOTween.Sequence();
-        _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 1f));
+        _initialCameraSequence.Append(_camera.transform.DOMove(shootingPos.position + shootingPos.rotation * _shoulderPosition.localPosition, 1f));
         _initialCameraSequence.Join(_camera.transform.DORotate(_shoulderPosition.eulerAngles, 1f));
-        _animator.SetTrigger("Aim");
+        _animator.SetTrigger("Idle");
     }
 
     public virtual void SetInactive()
     {
-        transform.position = hidingPos.position;
-        transform.rotation = hidingPos.rotation;
+        transform.DOMove(hidingPos.position, 1f).SetEase(Ease.Linear);
+        transform.DORotate(hidingPos.eulerAngles, 1f).SetEase(Ease.Linear);
         
-        _animator.SetTrigger("Idle");
+        _animator.SetTrigger("Hide");
     }
 
     public void StartAiming()

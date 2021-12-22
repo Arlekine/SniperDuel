@@ -51,7 +51,7 @@ public class RoundController : MonoBehaviour
         _activeShooter.onShoot += Shoot;
         _activeTarget.onShoot += Shoot;
 
-        Camera.main.transform.position = _activeShooter.ShoulderPosition.position;
+        Camera.main.transform.position = _activeShooter.shootingPos.position + _activeShooter.shootingPos.rotation * _activeShooter.ShoulderPosition.localPosition;
         Camera.main.transform.rotation = _activeShooter.ShoulderPosition.rotation;
         
         
@@ -83,14 +83,56 @@ public class RoundController : MonoBehaviour
         bullet.onTargetHit += ChangeActiveShooter;
     }
 
-    private void FreeCamera()
+    private Sequence _freeSeq;
+    
+    private void FreeCamera(bool hitSomething, GameObject hitted)
     {
         _camera.transform.parent = null;
-        _camera.transform.DOMove(_activeTarget.TargetPosition.position + (_activeShooter.TargetPosition.position - _activeTarget.TargetPosition.position).normalized * 10f, 0.5f);
-        _camera.transform.DORotate(Quaternion.LookRotation((_activeTarget.TargetPosition.position - _activeShooter.TargetPosition.position)).eulerAngles, 0.5f);
+        
+        _freeSeq?.Kill();
+        _freeSeq = DOTween.Sequence();
+
+        if (hitSomething)
+        {
+            _freeSeq.AppendCallback(() =>
+            {
+                if (hitted.GetComponent<GunTarget>() == null)
+                {
+                    var mO = hitted.GetComponent<MovingObject>();
+
+                    if (mO == null && hitted.transform.parent != null)
+                        mO = hitted.transform.parent.GetComponent<MovingObject>();
+
+                    if (mO != null)
+                        mO.enabled = false;
+                    
+                    
+                    _coolText.Show("MISS!");
+                }
+            });
+            _freeSeq.AppendInterval(2f);
+            _freeSeq.AppendCallback(() =>
+            {
+                if (hitted.GetComponent<GunTarget>() == null)
+                {
+                    var mO = hitted.GetComponent<MovingObject>();
+
+                    if (mO == null && hitted.transform.parent != null)
+                        mO = hitted.transform.parent.GetComponent<MovingObject>();
+
+                    if (mO != null)
+                        mO.enabled = true;
+                }
+            });
+        }
+        else
+        {
+            _camera.transform.DOMove(_activeTarget.TargetPosition.position + (_activeShooter.TargetPosition.position - _activeTarget.TargetPosition.position).normalized * 10f, 0.5f);
+            _camera.transform.DORotate(Quaternion.LookRotation((_activeTarget.TargetPosition.position - _activeShooter.TargetPosition.position)).eulerAngles, 0.5f);
+        }
     }
 
-    private void ChangeActiveShooter(GunTarget targetHitted)
+    private void ChangeActiveShooter(GunTarget targetHitted, Vector3 hitPos)
     {
         if (_activeShooter is Player && targetHitted != null)
         {

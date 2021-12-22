@@ -345,6 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   _blood: {fileID: 19891620, guid: 67a02ea392505844bab240611d904cc0, type: 3}
+  _sparks: {fileID: 19801142, guid: c83fb3ef04bb383408bb2064b89690b2, type: 3}
   _collider: {fileID: 2549299114506696773}
   _cameraPos: {fileID: 7159622232648865159}
   _cameraPos2: {fileID: 7159622231685354549}

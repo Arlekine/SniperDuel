@@ -8835,7 +8835,7 @@ MonoBehaviour:
   _roundStartCameraPos: {fileID: 1293510642}
   _roundController: {fileID: 633970827}
   _playerPrefab: {fileID: 7120919190343855757, guid: 79c9a802919352b449c0419ad2ffd39c, type: 3}
-  _winsToEndMatch: 1
+  _winsToEndMatch: 2
   _leageController: {fileID: 253895371}
   _leageUi: {fileID: 1104978748}
   _onScreenScorePlayer: {fileID: 977845552}

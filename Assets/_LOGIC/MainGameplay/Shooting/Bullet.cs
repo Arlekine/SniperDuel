@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Action<GunTarget> onTargetHit;
-    public Action onFreeCamera;
+    public Action<GunTarget, Vector3> onTargetHit;
+    public Action<bool, GameObject> onFreeCamera;
     
     [HideInInspector]
     public float Speed;
     
     [SerializeField] private ParticleSystem _blood;
+    [SerializeField] private ParticleSystem _sparks;
     [SerializeField] private Collider _collider;
     [SerializeField] private Transform _cameraPos;
     [SerializeField] private Transform _cameraPos2;
@@ -101,22 +102,29 @@ public class Bullet : MonoBehaviour
         {
             _oneMoreSequence?.Kill();
             _camera.transform.parent = null;
-            onFreeCamera?.Invoke();
+            onFreeCamera?.Invoke(false, null);
         }
 
         if (hitSomething || (transform.position - _targetPos).magnitude <= _currentSpeed * Time.deltaTime)
         {
+            if ((transform.position - _targetPos).magnitude <= _currentSpeed * Time.deltaTime)
+                hitSomething = false;
+            
+            if (hitSomething)
+                _target = hit.collider.GetComponent<GunTarget>();
+            
             if (_camera.transform.parent != null)
             {
                 _oneMoreSequence?.Kill();
                 
                 _camera.transform.parent = null;
-                onFreeCamera?.Invoke();
+                
+                if(hitSomething)
+                    onFreeCamera?.Invoke(true, hit.collider.gameObject);
+                else
+                    onFreeCamera?.Invoke(false, null);
             }
 
-            if (hitSomething)
-                _target = hit.collider.GetComponent<GunTarget>();
-            
             if (_target != null)
             {
                 var damage = _target.Hit();
@@ -128,7 +136,7 @@ public class Bullet : MonoBehaviour
                 _slowMotionSequence?.Kill();
                 _oneMoreSequence?.Kill();
 
-                onTargetHit?.Invoke(_target);
+                onTargetHit?.Invoke(_target, _targetPos);
                 
                 Time.timeScale = 1f;
                 Destroy(gameObject);
@@ -140,8 +148,13 @@ public class Bullet : MonoBehaviour
                 _oneMoreSequence?.Kill();
 
                 if (hitSomething)
+                {
                     _targetPos = hit.point;
-                
+                    
+                    var bl = Instantiate(_sparks, _targetPos, Quaternion.identity);
+                    bl.transform.forward = transform.position - _targetPos;
+                }
+
                 var colliders = Physics.OverlapSphere(_targetPos, _bulletDestractionRadius);
                 var affectedBodies = new List<Rigidbody>();
             
@@ -161,7 +174,7 @@ public class Bullet : MonoBehaviour
                 }
                 
                 Time.timeScale = 1f;
-                onTargetHit?.Invoke(null);
+                onTargetHit?.Invoke(null, _targetPos);
                 Destroy(gameObject);
             }
         }
@@ -169,14 +182,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        _target = other.collider.GetComponent<GunTarget>();
+        
         if (_camera.transform.parent != null)
         {
             _oneMoreSequence?.Kill();
             _camera.transform.parent = null;
-            onFreeCamera?.Invoke();
+            onFreeCamera?.Invoke(true, other.collider.gameObject);
         }
-
-        _target = other.collider.GetComponent<GunTarget>();
         
         if (_target != null)
         {
@@ -187,7 +200,7 @@ public class Bullet : MonoBehaviour
             var bl = Instantiate(_blood, _targetPos, Quaternion.identity);
 
             bl.transform.forward = transform.position - _targetPos;
-            onTargetHit?.Invoke(_target);
+            onTargetHit?.Invoke(_target, other.contacts[0].point);
                 
             Time.timeScale = 1f;
             Destroy(gameObject);
@@ -198,7 +211,7 @@ public class Bullet : MonoBehaviour
             _slowMotionSequence?.Kill();
             _oneMoreSequence?.Kill();
             Time.timeScale = 1f;
-            onTargetHit?.Invoke(null);
+            onTargetHit?.Invoke(null, other.contacts[0].point);
 
             var colliders = Physics.OverlapSphere(transform.position, _bulletDestractionRadius);
             var affectedBodies = new List<Rigidbody>();

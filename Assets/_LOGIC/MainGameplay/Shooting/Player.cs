@@ -48,6 +48,7 @@ public class Player : Shooter
         {
             _leanFinger = finger;
             
+            _animator.SetTrigger("Aim");
             StartAiming();
         }
     }
@@ -73,12 +74,15 @@ public class Player : Shooter
 
                 _leanFinger = null;
                 
+                
+                _shooterModel.SetActive(true);
                 _initialCameraSequence?.Kill();
                 _initialCameraSequence = DOTween.Sequence();
                 _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 2f));
                 _initialCameraSequence.Join(_camera.transform.DORotate(_shoulderPosition.eulerAngles, 2f));
                 
                 aimGraphic.DOFade(0f, 0.05f);
+                _animator.SetTrigger("Idle");
             }
         }
     }
@@ -189,5 +193,11 @@ public class Player : Shooter
 
             yield return null;
         }
+    }
+
+    private void LateUpdate()
+    {
+        _animator.transform.localPosition = Vector3.zero;
+        _animator.transform.localEulerAngles = Vector3.zero;
     }
 }
