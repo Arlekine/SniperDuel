@@ -8844,7 +8844,7 @@ MonoBehaviour:
   _roundEndPanelScoreText: {fileID: 1405801916}
   _matchEndPanel: {fileID: 1895566164}
   _matchEndPanelScoreText: {fileID: 1045333795}
-  _matchEndPanelWinText: {fileID: 0}
+  _matchEndPanelWinText: {fileID: 1893865596}
   _aimGraphic: {fileID: 765669323}
   _aimCenter: {fileID: 1628584753}
   _enemyShootingUI: {fileID: 336025844}
