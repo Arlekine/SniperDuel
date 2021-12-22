@@ -13,8 +13,11 @@ public class MatchController : MonoBehaviour
     [SerializeField] private Transform _roundStartCameraPos;
     [SerializeField] private RoundController _roundController;
     [SerializeField] private Player _playerPrefab;
-    [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private int _winsToEndMatch;
+    
+    [Header("Leagues")]
+    [SerializeField] private LeageController _leageController;
+    [SerializeField] private LeageUI _leageUi;
     
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI _onScreenScorePlayer;
@@ -23,7 +26,7 @@ public class MatchController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _roundEndPanelScoreText;
     [SerializeField] private GameObject _matchEndPanel;
     [SerializeField] private TextMeshProUGUI _matchEndPanelScoreText;
-    [SerializeField] private TextMeshProUGUI _progressionRewardText;
+    [SerializeField] private TextMeshProUGUI _matchEndPanelWinText;
     [SerializeField] private CanvasGroup _aimGraphic;
     [SerializeField] private RectTransform _aimCenter;
     [SerializeField] private GameObject _enemyShootingUI;
@@ -72,9 +75,9 @@ public class MatchController : MonoBehaviour
         var positions = _currentArena.GetRandomPosition();
 
         _activePlayer = Instantiate(_playerPrefab, positions.PlayerPos.position, Quaternion.identity);
-        _activeEnemy = Instantiate(_enemyPrefab, positions.EnemyPos.position, Quaternion.identity);
+        _activeEnemy = Instantiate(_leageController.GetCurrentEnemy(), positions.EnemyPos.position, Quaternion.identity);
         
-        InitActiveShooters();
+        InitActiveShooters(positions);
         
         var firstShooter = _isPlayerTurnFirst ? (Shooter)_activePlayer : (Shooter)_activeEnemy;
         var secondShooter = _isPlayerTurnFirst ? (Shooter)_activeEnemy : (Shooter)_activePlayer;
@@ -115,11 +118,16 @@ public class MatchController : MonoBehaviour
         _enemyHealthSlider.value = 1f;
     }
 
-    private void InitActiveShooters()
+    private void InitActiveShooters(Arena.ArenaPositions positions)
     {
         _activePlayer.Gun.AimForce = _currentArena.arenaShootingCondition.playerAimForce;
         _activePlayer.Gun.BulletSpeed = _currentArena.arenaShootingCondition.playerBulletSpeed;
-        
+
+        _activePlayer.shootingPos = positions.PlayerPos;
+        _activePlayer.hidingPos = positions.PlayerHidingPos;
+        _activeEnemy.shootingPos = positions.EnemyPos;
+        _activeEnemy.hidingPos = positions.EnemyHidingPos;
+            
         _activeEnemy.Gun.AimForce = _currentArena.arenaShootingCondition.enemyAimForce;
         _activeEnemy.Gun.BulletSpeed = _currentArena.arenaShootingCondition.enemyBulletSpeed;
         
@@ -155,13 +163,14 @@ public class MatchController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         
         _matchEndPanel.SetActive(true);
+        _matchEndPanelWinText.text = _playerWins > _enemyWins ? "You win!" : "You loose!";
         _matchEndPanelScoreText.text = $"{_playerWins} - {_enemyWins}";
         
         ClearCurrentContent();
-
-        int reward = _playerWins > _enemyWins ? _progressionSystem.WinReward : _progressionSystem.LooseReward;
-        _progressionRewardText.text = reward >= 0 ? $"+{reward}" : $"{reward}";
-        _progressionSystem.AddPoints(reward);
+        
+        _leageUi.SetPlayersList(_leageController.GetCurrentLeage()._enemiedNickNames, _leageController.GetCurrentLeage().icon);
+        yield return null;
+        _leageUi.Open(_playerWins > _enemyWins);
     }
     
 }

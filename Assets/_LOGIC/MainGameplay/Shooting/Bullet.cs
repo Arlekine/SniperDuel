@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Action<bool> onTargetHit;
+    public Action<GunTarget> onTargetHit;
     public Action onFreeCamera;
     
     [HideInInspector]
@@ -75,10 +75,12 @@ public class Bullet : MonoBehaviour
                 }
             });
 
-            _slowMotionSequence.AppendInterval(1f);_slowMotionSequence.AppendCallback(() =>
+            _slowMotionSequence.AppendInterval(1f);
+            _slowMotionSequence.AppendCallback(() =>
                 {
                     _collider.enabled = true;
                 });
+            
             _slowMotionSequence.Append(DOTween.To(() => 0.1f, x =>
                 {
                     _currentSpeed = x * Speed;
@@ -92,6 +94,9 @@ public class Bullet : MonoBehaviour
     {
         transform.position = transform.position + transform.forward * _currentSpeed * Time.deltaTime;
 
+        RaycastHit hit;
+        bool hitSomething = (Physics.Raycast(transform.position, transform.forward, out hit, _currentSpeed * Time.deltaTime));
+
         if (_camera.transform.parent != null && (transform.position - _targetPos).magnitude < _cameraStopDistance)
         {
             _oneMoreSequence?.Kill();
@@ -99,7 +104,7 @@ public class Bullet : MonoBehaviour
             onFreeCamera?.Invoke();
         }
 
-        if ((transform.position - _targetPos).magnitude <= _currentSpeed * Time.deltaTime)
+        if (hitSomething || (transform.position - _targetPos).magnitude <= _currentSpeed * Time.deltaTime)
         {
             if (_camera.transform.parent != null)
             {
@@ -109,11 +114,12 @@ public class Bullet : MonoBehaviour
                 onFreeCamera?.Invoke();
             }
 
-            RaycastHit hit;
-
+            if (hitSomething)
+                _target = hit.collider.GetComponent<GunTarget>();
+            
             if (_target != null)
             {
-                _target.Hit();
+                var damage = _target.Hit();
                 var bl = Instantiate(_blood, _targetPos, Quaternion.identity);
 
                 bl.transform.forward = transform.position - _targetPos;
@@ -122,7 +128,7 @@ public class Bullet : MonoBehaviour
                 _slowMotionSequence?.Kill();
                 _oneMoreSequence?.Kill();
 
-                onTargetHit?.Invoke(true);
+                onTargetHit?.Invoke(_target);
                 
                 Time.timeScale = 1f;
                 Destroy(gameObject);
@@ -132,6 +138,9 @@ public class Bullet : MonoBehaviour
                 _sequence?.Kill();
                 _slowMotionSequence?.Kill();
                 _oneMoreSequence?.Kill();
+
+                if (hitSomething)
+                    _targetPos = hit.point;
                 
                 var colliders = Physics.OverlapSphere(_targetPos, _bulletDestractionRadius);
                 var affectedBodies = new List<Rigidbody>();
@@ -152,7 +161,7 @@ public class Bullet : MonoBehaviour
                 }
                 
                 Time.timeScale = 1f;
-                onTargetHit?.Invoke(false);
+                onTargetHit?.Invoke(null);
                 Destroy(gameObject);
             }
         }
@@ -171,19 +180,25 @@ public class Bullet : MonoBehaviour
         
         if (_target != null)
         {
+            _sequence?.Kill();
+            _slowMotionSequence?.Kill();
+            _oneMoreSequence?.Kill();
             _target.Hit();
             var bl = Instantiate(_blood, _targetPos, Quaternion.identity);
 
             bl.transform.forward = transform.position - _targetPos;
-            onTargetHit?.Invoke(true);
+            onTargetHit?.Invoke(_target);
                 
             Time.timeScale = 1f;
             Destroy(gameObject);
         }
         else
         {
+            _sequence?.Kill();
+            _slowMotionSequence?.Kill();
+            _oneMoreSequence?.Kill();
             Time.timeScale = 1f;
-            onTargetHit?.Invoke(false);
+            onTargetHit?.Invoke(null);
 
             var colliders = Physics.OverlapSphere(transform.position, _bulletDestractionRadius);
             var affectedBodies = new List<Rigidbody>();

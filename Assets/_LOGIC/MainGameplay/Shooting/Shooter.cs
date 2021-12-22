@@ -10,6 +10,9 @@ public class Shooter : MonoBehaviour
     public Transform ShoulderPosition => _shoulderPosition;
     public Health Health;
     public Gun Gun => _gun;
+
+    [HideInInspector] public Transform shootingPos;
+    [HideInInspector] public Transform hidingPos;
     
     [Space]
     [SerializeField] protected Gun _gun;
@@ -68,6 +71,14 @@ public class Shooter : MonoBehaviour
 
     public virtual void SetReadyToAim()
     {
+        transform.position = shootingPos.position;
+        transform.rotation = shootingPos.rotation;
+        
+        var currentPos = transform.position;
+        currentPos.y = _currentTarget.transform.position.y;
+        
+        transform.forward = (_currentTarget.transform.position - currentPos).normalized;
+        
         _initialCameraSequence?.Kill();
         _initialCameraSequence = DOTween.Sequence();
         _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 1f));
@@ -77,6 +88,9 @@ public class Shooter : MonoBehaviour
 
     public virtual void SetInactive()
     {
+        transform.position = hidingPos.position;
+        transform.rotation = hidingPos.rotation;
+        
         _animator.SetTrigger("Idle");
     }
 

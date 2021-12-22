@@ -8,7 +8,14 @@ public class Enemy : Shooter
 {
     [Space] 
     [HideInInspector] public GameObject enemyShootingUI;
+    [SerializeField] private LayerMask _shootingLayerMask;
 
+    [Space] 
+    [SerializeField] private float _minX = -0.3f;
+    [SerializeField] private float _maxX = 0.3f;
+    [SerializeField] private float _minY = -0.5f;
+    [SerializeField] private float _maxY = 0.5f;
+    
     private bool set;
     
     public override void SetReadyToAim()
@@ -70,8 +77,8 @@ public class Enemy : Shooter
             }
             else
             {
-                perfectTarget.x += Random.Range(-0.3f, 0.3f);
-                perfectTarget.y += Random.Range(-0.5f, 0.5f);
+                perfectTarget.x += Random.Range(_minX, _maxX);
+                perfectTarget.y += Random.Range(_minY, _maxY);
             }
 
             print(perfectTarget);
@@ -91,6 +98,7 @@ public class Enemy : Shooter
         
         _animator.transform.localPosition = Vector3.zero;
         _animator.transform.localEulerAngles = Vector3.zero;
+        
         //_animator.transform.localEulerAngles = Vector3.zero;
         Vector2 size = Vector2.Scale(aimCenter.rect.size, transform.lossyScale);
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
@@ -117,7 +125,7 @@ public class Enemy : Shooter
         GunTarget shootTarget;
         RaycastHit hit;
 
-        if (Physics.Raycast(shootingRay, out hit))
+        if (Physics.Raycast(shootingRay, out hit, 100f, _shootingLayerMask))
         {
             var gunTarget = hit.collider.GetComponent<GunTarget>();
             if (gunTarget)
@@ -128,7 +136,7 @@ public class Enemy : Shooter
             else
             {
                 if ((_camera.transform.position - hit.point).magnitude > (transform.position - _currentTarget.transform.position).magnitude)
-                    shootPoint = initalOrigin + shootingRay.direction.normalized * (initalOrigin - _currentTarget.transform.position).magnitude;
+                    shootPoint = initalOrigin + shootingRay.direction.normalized * ((initalOrigin - _currentTarget.transform.position).magnitude + 3f);
                 else
                     shootPoint = hit.point;
                 shootTarget = null;
@@ -136,7 +144,7 @@ public class Enemy : Shooter
         }
         else
         {
-            shootPoint = initalOrigin + shootingRay.direction.normalized * (initalOrigin- _currentTarget.transform.position).magnitude;
+            shootPoint = initalOrigin + shootingRay.direction.normalized * ((initalOrigin - _currentTarget.transform.position).magnitude + 3f);
             shootTarget = null;
         }
 

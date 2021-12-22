@@ -11,6 +11,7 @@ public class RoundController : MonoBehaviour
     
     [SerializeField] private Camera _camera;
     [SerializeField] private SniperScopeDistance _sniperScope;
+    [SerializeField] private CoolText _coolText;
 
     [Header("UI")] 
     [SerializeField] private TextMeshProUGUI _aimForceText;
@@ -89,8 +90,24 @@ public class RoundController : MonoBehaviour
         _camera.transform.DORotate(Quaternion.LookRotation((_activeTarget.TargetPosition.position - _activeShooter.TargetPosition.position)).eulerAngles, 0.5f);
     }
 
-    private void ChangeActiveShooter(bool targetHitted)
+    private void ChangeActiveShooter(GunTarget targetHitted)
     {
+        if (_activeShooter is Player && targetHitted != null)
+        {
+            if (targetHitted.TargetDamage == 100)
+            {
+                _coolText.Show("HEADSHOT!");
+            }
+            else if (targetHitted.TargetDamage < 50)
+            {
+                _coolText.Show("COOL!");
+            }
+            else
+            {
+                _coolText.Show("AWESOME!");
+            }
+        }
+        
         if (!_gameEnd)
             StartCoroutine(SwitchShooters());
     }
@@ -103,8 +120,8 @@ public class RoundController : MonoBehaviour
         _activeShooter = _activeTarget;
         _activeTarget = buffer;
         
-        _activeShooter.SetReadyToAim();
         _activeTarget.SetInactive();
+        _activeShooter.SetReadyToAim();
 
         _aimForceText.text = $"x{_activeShooter.Gun.AimForce}";
         _sniperScope.SetGunSettings(_activeTarget.Gun,  _sniperScopeDistance);

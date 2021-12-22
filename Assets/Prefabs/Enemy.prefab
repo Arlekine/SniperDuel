@@ -17785,6 +17785,9 @@ MonoBehaviour:
   aimGraphic: {fileID: 0}
   aimCenter: {fileID: 0}
   enemyShootingUI: {fileID: 0}
+  _shootingLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &1835741177381136764
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16090,6 +16090,9 @@ MonoBehaviour:
   _breathHalfCicleTime: 2
   _moveArea: 3
   _aimingMoveCenter: {fileID: 7120919189482666603}
+  _shootingLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &7120919190343855758
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,9 @@ public class Arena : MonoBehaviour
     public class ArenaPositions
     {
         public Transform PlayerPos;
+        public Transform PlayerHidingPos;
         public Transform EnemyPos;
+        public Transform EnemyHidingPos;
     }
     
     public List<ArenaPositions> arenaPositions = new List<ArenaPositions>();

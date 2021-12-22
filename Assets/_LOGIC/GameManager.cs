@@ -8,23 +8,19 @@ public class GameManager : MonoBehaviour
 {
     [Header("Logic")] 
     [SerializeField] private MatchController _matchController;
+    [SerializeField] private LeageController _leageController;
+    [SerializeField] private LeageUI _leageUI;
     [SerializeField] private List<Arena> _arenas = new List<Arena>();
     
     [Header("UI Menues")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _titleScreen;
-    [SerializeField] private GameObject _arenasScreen;
-    [SerializeField] private ArenasListPanel _arenasList;
-    [SerializeField] private Button _goButton;
     [SerializeField] private MatchSearchingPanel _opponentSearchMenu;
     [SerializeField] private GameObject _matchMenu;
-    
-    public void Play()
+
+    private void Start()
     {
-        _titleScreen.SetActive(false);
-        _arenasScreen.SetActive(true);
-        _arenasList.onNewCardSelected += UpdateGoButton;
-        _arenasList.SetFirst();
+        _leageUI.onLeageRoutineEnd += MatchFinished;
     }
 
     public void StartMatch()
@@ -41,14 +37,6 @@ public class GameManager : MonoBehaviour
         _mainMenu.SetActive(true);
         
         _titleScreen.SetActive(true);
-        _arenasScreen.SetActive(false);
-        
-        _arenasList.onNewCardSelected -= UpdateGoButton;
-    }
-
-    private void UpdateGoButton(bool areanaUnlocked)
-    {
-        _goButton.interactable = areanaUnlocked;
     }
     
     private IEnumerator MatchStartRoutine()
@@ -57,6 +45,6 @@ public class GameManager : MonoBehaviour
 
         _matchMenu.SetActive(true);
         _opponentSearchMenu.FadeOut();
-        _matchController.StartNewMatch(_arenas[_arenasList.CurrentIndex]);
+        _matchController.StartNewMatch(_leageController.GetCurrentArena());
     }
 }

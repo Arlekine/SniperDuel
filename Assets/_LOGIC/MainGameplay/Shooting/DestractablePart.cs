@@ -13,9 +13,10 @@ public class DestractablePart : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Destroy()
+    public virtual void Destroy()
     {
         _rigidbody.isKinematic = false;
+        transform.parent = transform.parent.parent;
         StartCoroutine(DisablePhysiscs());
     }
 

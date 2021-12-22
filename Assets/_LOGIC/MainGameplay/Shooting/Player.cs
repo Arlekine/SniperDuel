@@ -13,6 +13,7 @@ public class Player : Shooter
     [SerializeField] private float _breathHalfCicleTime = 1.5f;
     [SerializeField] private float _moveArea = 1f;
     [SerializeField] private Transform _aimingMoveCenter;
+    [SerializeField] private LayerMask _shootingLayerMask;
     
     private Vector3 _breath;
     private LeanFinger _leanFinger;
@@ -100,7 +101,7 @@ public class Player : Shooter
         GunTarget shootTarget;
         RaycastHit hit;
 
-        if (Physics.Raycast(shootingRay, out hit))
+        if (Physics.Raycast(shootingRay, out hit, 100f, _shootingLayerMask))
         {
             var gunTarget = hit.collider.GetComponent<GunTarget>();
             if (gunTarget)
@@ -111,7 +112,7 @@ public class Player : Shooter
             else
             {
                 if ((_camera.transform.position - hit.point).magnitude > (transform.position - _currentTarget.transform.position).magnitude)
-                    shootPoint = initalOrigin + shootingRay.direction.normalized * (initalOrigin - _currentTarget.transform.position).magnitude;
+                    shootPoint = initalOrigin + shootingRay.direction.normalized * ((initalOrigin - _currentTarget.transform.position).magnitude + 3f);
                 else
                     shootPoint = hit.point;
                 shootTarget = null;
@@ -119,7 +120,7 @@ public class Player : Shooter
         }
         else
         {
-            shootPoint = initalOrigin + shootingRay.direction.normalized * (initalOrigin - _currentTarget.transform.position).magnitude;
+            shootPoint = initalOrigin + shootingRay.direction.normalized * ((initalOrigin - _currentTarget.transform.position).magnitude + 3f);
             shootTarget = null;
         }
 
@@ -135,6 +136,7 @@ public class Player : Shooter
     {
         _animator.transform.localPosition = Vector3.zero;
         _animator.transform.localEulerAngles = Vector3.zero;
+        
         Vector2 size = Vector2.Scale(aimCenter.rect.size, transform.lossyScale);
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
         
