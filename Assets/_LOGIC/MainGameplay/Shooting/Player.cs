@@ -23,8 +23,11 @@ public class Player : Shooter
     {
         base.SetReadyToAim();
         
-        LeanTouch.OnFingerDown += StartAim;
-        LeanTouch.OnFingerUp += EndAim;
+        _initialCameraSequence.OnComplete(() =>
+        {
+            LeanTouch.OnFingerDown += StartAim;
+            LeanTouch.OnFingerUp += EndAim; 
+        });
     }
 
     public override void SetInactive()

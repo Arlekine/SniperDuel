@@ -72,7 +72,7 @@ public class MatchController : MonoBehaviour
         _currentArena = Instantiate(_arenaPrefab, _arenaSpawnPoint);
         _currentArena.transform.localPosition = Vector3.zero;
 
-        var positions = _currentArena.GetRandomPosition();
+        var positions = _currentArena.GetPosition(_playerWins + _enemyWins);
 
         _activePlayer = Instantiate(_playerPrefab, positions.PlayerPos.position, Quaternion.identity);
         _activeEnemy = Instantiate(_leageController.GetCurrentEnemy(), positions.EnemyPos.position, Quaternion.identity);

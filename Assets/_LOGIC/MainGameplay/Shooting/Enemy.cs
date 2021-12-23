@@ -75,8 +75,8 @@ public class Enemy : Shooter
 
             if (i != amount - 1)
             {
-                perfectTarget.x += Random.Range(-0.75f, 0.75f);
-                perfectTarget.y += Random.Range(-1.5f, 2f);
+                perfectTarget.x += Random.Range(-0.4f, 0.4f);
+                perfectTarget.y += Random.Range(-0.5f, 1f);
             }
             else
             {

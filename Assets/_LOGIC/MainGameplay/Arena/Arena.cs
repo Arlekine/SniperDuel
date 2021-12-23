@@ -18,8 +18,10 @@ public class Arena : MonoBehaviour
     public List<ArenaPositions> arenaPositions = new List<ArenaPositions>();
     public ShootingCondition arenaShootingCondition;
 
-    public ArenaPositions GetRandomPosition()
+    public ArenaPositions GetPosition(int index)
     {
-        return arenaPositions[Random.Range(0, arenaPositions.Count)];
+        if (index >= arenaPositions.Count)
+            index -= arenaPositions.Count;
+        return arenaPositions[index];
     }
 }

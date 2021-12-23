@@ -81,11 +81,52 @@ public class LeageUI : MonoBehaviour
             _mainWindowSeq.AppendCallback(() => UpdatePlayerPos());
         else
         {
-            _mainWindowSeq.AppendInterval(1.5f);
-            _mainWindowSeq.AppendCallback(() => { onLeageRoutineEnd?.Invoke(); });
+            if (_leageController.CurrentLeagePosition == _leageController.GetCurrentLeage().enemyToSpawn.Count)
+            {
+
+                _mainWindowSeq.AppendInterval(1.5f);
+                _mainWindowSeq.AppendCallback(() => { onLeageRoutineEnd?.Invoke(); });
+            }
+            else
+            {
+                _mainWindowSeq.AppendCallback(() => PlayerDown());
+            }
         }
     }
 
+    public Tween PlayerDown()
+    {
+        _updateWindowSeq?.Kill();
+        _updateWindowSeq = DOTween.Sequence();
+
+        int playerPosition = _leageController.CurrentLeagePosition;
+        
+        Canvas.ForceUpdateCanvases();
+        
+        var playerPos = _player.RectTransform.anchoredPosition;
+        var enemyPos = _enemies[playerPosition].RectTransform.anchoredPosition;
+        
+        _updateWindowSeq.AppendCallback(() =>
+        {
+            _playersParent.enabled = false;
+        });
+        
+        _updateWindowSeq.Append(_player.GoDown(enemyPos));
+        _updateWindowSeq.Join(_enemies[playerPosition].GoUp(playerPos));
+        _updateWindowSeq.AppendInterval(1.5f);
+        _updateWindowSeq.AppendCallback(() =>
+        {
+            _player.transform.SetSiblingIndex(_player.transform.GetSiblingIndex() + 1);
+            _playersParent.enabled = true;
+            _leageController.CurrentLeagePosition = _leageController.CurrentLeagePosition + 1;
+            
+
+            onLeageRoutineEnd?.Invoke();
+        });
+
+        return _updateWindowSeq;
+    }
+    
     public Tween UpdatePlayerPos()
     {
         _updateWindowSeq?.Kill();
