@@ -37,10 +37,10 @@ public class RoundController : MonoBehaviour
         
         _activeShooter.SetCamera(_camera);
         _activeShooter.SetTarget(_activeTarget.TargetPosition, arenaCondition);
-        
+
+        _sniperScope.enabled = true;
         _sniperScope.SetCamera(_camera);
         _sniperScope.SetGunSettings(_activeShooter.Gun, arenaCondition.sniperScopeDistance);
-        _sniperScope.enabled = true;
         
         _activeTarget.SetCamera(_camera);
         _activeTarget.SetTarget(_activeShooter.TargetPosition, arenaCondition);
@@ -166,6 +166,6 @@ public class RoundController : MonoBehaviour
         _activeShooter.SetReadyToAim();
 
         _aimForceText.text = $"x{_activeShooter.Gun.AimForce}";
-        _sniperScope.SetGunSettings(_activeTarget.Gun,  _sniperScopeDistance);
+        _sniperScope.SetGunSettings(_activeShooter.Gun,  _sniperScopeDistance);
     }
 }

@@ -84,10 +84,10 @@ public class Bullet : MonoBehaviour
             
             _slowMotionSequence.Append(DOTween.To(() => 0.1f, x =>
                 {
-                    _currentSpeed = x * Speed;
+                    _currentSpeed = x * 50f;
                     Time.timeScale = x;
                     _slowMotionSequence.timeScale = 1 / x;
-                }, 100f / Speed, 0.5f));
+                }, 1f, 0.5f));
         });
     }
 

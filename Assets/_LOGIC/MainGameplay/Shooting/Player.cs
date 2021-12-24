@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DG.Tweening;
 using Lean.Touch;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Player : Shooter
 {
@@ -33,6 +35,15 @@ public class Player : Shooter
     public override void SetInactive()
     {
         base.SetInactive();
+
+        LeanTouch.OnFingerDown -= StartAim;
+        LeanTouch.OnFingerUp -= EndAim;
+    }
+
+    private void OnDestroy()
+    {
+        LeanTouch.OnFingerDown -= StartAim;
+        LeanTouch.OnFingerUp -= EndAim;
     }
 
     protected override void GunShootReady()
@@ -83,6 +94,7 @@ public class Player : Shooter
                 _initialCameraSequence = DOTween.Sequence();
                 _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 2f));
                 _initialCameraSequence.Join(_camera.transform.DORotate(_shoulderPosition.eulerAngles, 2f));
+                _initialCameraSequence.Append(_camera.DOFieldOfView(60f, 0.3f));
                 
                 aimGraphic.DOFade(0f, 0.05f);
                 _animator.SetTrigger("Idle");
@@ -100,15 +112,16 @@ public class Player : Shooter
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
         
         var shootingRay = _camera.ScreenPointToRay(rect.center);
-        var initalOrigin = shootingRay.origin;
         
-        shootingRay.origin = shootingRay.origin + shootingRay.direction.normalized * 5f + transform.right * _windOffset - Vector3.up * _distanceOffset;
+        shootingRay.origin = shootingRay.origin + transform.right * _windOffset - Vector3.up * _distanceOffset;
+        var initalOrigin = shootingRay.origin;
+        shootingRay.origin = shootingRay.origin + shootingRay.direction.normalized * 5f;
                 
         Vector3 shootPoint;
         GunTarget shootTarget;
         RaycastHit hit;
 
-        if (Physics.Raycast(shootingRay, out hit, 100f, _shootingLayerMask))
+        if (Physics.Raycast(shootingRay, out hit, 2000f, _shootingLayerMask))
         {
             var gunTarget = hit.collider.GetComponent<GunTarget>();
             if (gunTarget)
@@ -148,16 +161,11 @@ public class Player : Shooter
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
         
         var shootingRay = _camera.ScreenPointToRay(rect.center);
+        var initalOrigin = shootingRay.origin;
+        
+        shootingRay.origin = shootingRay.origin + shootingRay.direction.normalized * 5f + transform.right * _windOffset - Vector3.up * _distanceOffset;
 
-        var flightTime = (100f / _gun.BulletSpeed);
-        var distanceOffset = (flightTime*flightTime * 9.8f) / 2;
-
-        
-        Debug.DrawRay(shootingRay.origin, shootingRay.direction * 10000f, Color.green);
-        
-        shootingRay.origin = shootingRay.origin + shootingRay.direction.normalized * 5f + Vector3.right * _windOffset - Vector3.up * _distanceOffset;
-        
-        Debug.DrawRay(shootingRay.origin, shootingRay.direction * 10000f, Color.red);
+        Debug.DrawRay(shootingRay.origin, shootingRay.direction * 1000f, Color.red);
         
         if (_readyToShoot && _leanFinger != null)
         {

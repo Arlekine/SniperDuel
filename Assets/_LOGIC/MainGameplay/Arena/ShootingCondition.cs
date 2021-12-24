@@ -9,9 +9,9 @@ public class ShootingCondition
     public int WindDirection;
 
     [Space] 
-    [Range(300f, 1000f)]public float playerBulletSpeed;
+    [Range(50f, 1000f)]public float playerBulletSpeed;
     [Range(2, 32)]public int playerAimForce;
-    [Range(300f, 1000f)] public float enemyBulletSpeed;
+    [Range(50f, 1000f)] public float enemyBulletSpeed;
     [Range(2, 32)] public int enemyAimForce;
     
     [Space]

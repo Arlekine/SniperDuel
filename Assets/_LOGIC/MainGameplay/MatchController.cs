@@ -29,6 +29,7 @@ public class MatchController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _matchEndPanelWinText;
     [SerializeField] private CanvasGroup _aimGraphic;
     [SerializeField] private RectTransform _aimCenter;
+    [SerializeField] private RectTransform _enemyAimCenter;
     [SerializeField] private GameObject _enemyShootingUI;
     [SerializeField] private Slider _playerHealthSlider;
     [SerializeField] private Slider _enemyHealthSlider;
@@ -125,6 +126,7 @@ public class MatchController : MonoBehaviour
 
         _activePlayer.shootingPos = positions.PlayerPos;
         _activePlayer.hidingPos = positions.PlayerHidingPos;
+        
         _activeEnemy.shootingPos = positions.EnemyPos;
         _activeEnemy.hidingPos = positions.EnemyHidingPos;
             
@@ -136,6 +138,7 @@ public class MatchController : MonoBehaviour
         _activePlayer.Health.healthUI = _playerHealthSlider;
         
         _activeEnemy.aimCenter = _aimCenter;
+        _activeEnemy.enemyAimCenter = _enemyAimCenter;
         _activeEnemy.aimGraphic = _aimGraphic;
         _activeEnemy.Health.healthUI = _enemyHealthSlider;
         _activeEnemy.enemyShootingUI = _enemyShootingUI;
