@@ -2008,6 +2008,120 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 413ae10f9df968f4fb459621fd193a56, type: 2}
   - {fileID: 11400000, guid: 4e77d5094b6cd674e9dc66d9e06ec079, type: 2}
   _leageUi: {fileID: 1104978748}
+--- !u!1001 &324580383
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 963194228}
+    m_Modifications:
+    - target: {fileID: 1019326057566698, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_Name
+      value: WindlinesSpeedy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019326057566698, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: TrailModule.sizeAffectsLifetime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: TrailModule.generateLightingData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: TrailModule.inheritParticleColor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxGradient.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199932725390814564, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 199932725390814564, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_RenderMode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 199932725390814564, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199932725390814564, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c139662fc8b63d745b414faaab8f1b8b, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f683447c6570076418716c53d120168a, type: 3}
+--- !u!4 &324580384 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
+  m_PrefabInstance: {fileID: 324580383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &336025844
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,7 +3408,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4831,7 +4945,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.41, z: -2.006}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 324580384}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

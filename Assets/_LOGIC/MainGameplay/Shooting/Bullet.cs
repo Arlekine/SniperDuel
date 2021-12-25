@@ -80,6 +80,7 @@ public class Bullet : MonoBehaviour
             _slowMotionSequence.AppendCallback(() =>
                 {
                     _collider.enabled = true;
+                    _camera.transform.GetChild(0).gameObject.SetActive(true);
                 });
             
             _slowMotionSequence.Append(DOTween.To(() => 0.1f, x =>
@@ -102,6 +103,7 @@ public class Bullet : MonoBehaviour
         {
             _oneMoreSequence?.Kill();
             _camera.transform.parent = null;
+            _camera.transform.GetChild(0).gameObject.SetActive(false);
             onFreeCamera?.Invoke(false, null);
         }
 
@@ -118,6 +120,7 @@ public class Bullet : MonoBehaviour
                 _oneMoreSequence?.Kill();
                 
                 _camera.transform.parent = null;
+                _camera.transform.GetChild(0).gameObject.SetActive(false);
                 
                 if(hitSomething)
                     onFreeCamera?.Invoke(true, hit.collider.gameObject);
@@ -139,6 +142,7 @@ public class Bullet : MonoBehaviour
                 onTargetHit?.Invoke(_target, _targetPos);
                 
                 Time.timeScale = 1f;
+                _camera.transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             else
@@ -175,6 +179,7 @@ public class Bullet : MonoBehaviour
                 
                 Time.timeScale = 1f;
                 onTargetHit?.Invoke(null, _targetPos);
+                _camera.transform.GetChild(0).gameObject.SetActive(false);
                 Destroy(gameObject);
             }
         }
@@ -188,6 +193,7 @@ public class Bullet : MonoBehaviour
         {
             _oneMoreSequence?.Kill();
             _camera.transform.parent = null;
+            _camera.transform.GetChild(0).gameObject.SetActive(false);
             onFreeCamera?.Invoke(true, other.collider.gameObject);
         }
         
