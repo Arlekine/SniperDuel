@@ -23,6 +23,7 @@ public class RoundController : MonoBehaviour
     private Shooter _activeShooter;
     private Shooter _activeTarget;
     private List<float> _sniperScopeDistance;
+    private Bullet _currentBullet;
     
 
     private bool _gameEnd;
@@ -79,6 +80,7 @@ public class RoundController : MonoBehaviour
 
     private void Shoot(Bullet bullet)
     {
+        _currentBullet = bullet;
         bullet.onFreeCamera += FreeCamera;
         bullet.onTargetHit += ChangeActiveShooter;
     }
@@ -87,6 +89,9 @@ public class RoundController : MonoBehaviour
     
     private void FreeCamera(bool hitSomething, GameObject hitted)
     {
+        if (_currentBullet != null)
+            _currentBullet.onFreeCamera -= FreeCamera;
+        
         _camera.transform.parent = null;
         
         _freeSeq?.Kill();
@@ -105,9 +110,6 @@ public class RoundController : MonoBehaviour
 
                     if (mO != null)
                         mO.enabled = false;
-                    
-                    
-                    _coolText.Show("MISS!");
                 }
             });
             _freeSeq.AppendInterval(2f);
@@ -134,6 +136,9 @@ public class RoundController : MonoBehaviour
 
     private void ChangeActiveShooter(GunTarget targetHitted, Vector3 hitPos)
     {
+        if (_currentBullet != null)
+            _currentBullet.onTargetHit -= ChangeActiveShooter;
+        
         if (_activeShooter is Player && targetHitted != null)
         {
             if (targetHitted.TargetDamage == 100)
@@ -149,6 +154,9 @@ public class RoundController : MonoBehaviour
                 _coolText.Show("AWESOME!");
             }
         }
+        
+        if (targetHitted == null)
+            _coolText.Show("MISS!");
         
         if (!_gameEnd)
             StartCoroutine(SwitchShooters());

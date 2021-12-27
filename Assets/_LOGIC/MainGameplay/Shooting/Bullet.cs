@@ -45,7 +45,6 @@ public class Bullet : MonoBehaviour
         {
             _collider.enabled = false;
             _camera.transform.parent = _cameraPos;
-            _camera.nearClipPlane = 0.1f;
         });
         
         _sequence.Append(_camera.DOFieldOfView(60f, 0f).SetEase(Ease.InExpo));
@@ -133,7 +132,7 @@ public class Bullet : MonoBehaviour
                 var damage = _target.Hit();
                 var bl = Instantiate(_blood, _targetPos, Quaternion.identity);
 
-                bl.transform.forward = transform.position - _targetPos;
+                bl.transform.forward = (transform.position - _targetPos).normalized;
         
                 _sequence?.Kill();
                 _slowMotionSequence?.Kill();
@@ -151,13 +150,18 @@ public class Bullet : MonoBehaviour
                 _slowMotionSequence?.Kill();
                 _oneMoreSequence?.Kill();
 
+                
+                hitSomething = (Physics.Raycast(transform.position, transform.forward, out hit, _currentSpeed * Time.deltaTime));
+                
                 if (hitSomething)
                 {
                     _targetPos = hit.point;
+                
                     
                     var bl = Instantiate(_sparks, _targetPos, Quaternion.identity);
-                    bl.transform.forward = transform.position - _targetPos;
+                    bl.transform.forward = (transform.position - _targetPos).normalized;
                 }
+                
 
                 var colliders = Physics.OverlapSphere(_targetPos, _bulletDestractionRadius);
                 var affectedBodies = new List<Rigidbody>();
@@ -219,7 +223,13 @@ public class Bullet : MonoBehaviour
             Time.timeScale = 1f;
             onTargetHit?.Invoke(null, other.contacts[0].point);
 
-            var colliders = Physics.OverlapSphere(transform.position, _bulletDestractionRadius);
+            _targetPos = other.contacts[0].point;
+                    
+            var bl = Instantiate(_sparks, _targetPos, Quaternion.identity);
+            bl.transform.forward = transform.position - _targetPos;
+            
+
+            var colliders = Physics.OverlapSphere(_targetPos, _bulletDestractionRadius);
             var affectedBodies = new List<Rigidbody>();
             
             foreach (var col in colliders)

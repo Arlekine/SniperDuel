@@ -69,6 +69,7 @@ public class Player : Shooter
 
     private void EndAim(LeanFinger finger)
     {
+        _camera.nearClipPlane = 0.01f;
         if (finger == _leanFinger)
         {
             if (_isMainAimingPart)
@@ -92,9 +93,9 @@ public class Player : Shooter
                 _shooterModel.SetActive(true);
                 _initialCameraSequence?.Kill();
                 _initialCameraSequence = DOTween.Sequence();
-                _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 2f));
-                _initialCameraSequence.Join(_camera.transform.DORotate(_shoulderPosition.eulerAngles, 2f));
-                _initialCameraSequence.Append(_camera.DOFieldOfView(60f, 0.3f));
+                _initialCameraSequence.Append(_camera.transform.DOMove(_shoulderPosition.position, 0.5f));
+                _initialCameraSequence.Join(_camera.transform.DORotate(_shoulderPosition.eulerAngles, 0.5f));
+                _initialCameraSequence.Join(_camera.DOFieldOfView(60f, 0.3f));
                 
                 aimGraphic.DOFade(0f, 0.05f);
                 _animator.SetTrigger("Idle");
@@ -108,6 +109,8 @@ public class Player : Shooter
         StopAllCoroutines();
         _readyToShoot = false;
 
+        
+        _camera.nearClipPlane = 0.01f;
         Vector2 size = Vector2.Scale(aimCenter.rect.size, transform.lossyScale);
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
         

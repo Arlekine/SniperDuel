@@ -124,6 +124,7 @@ public class Enemy : Shooter
         print("shoot");
         StopAllCoroutines();
 
+        _camera.nearClipPlane = 0.01f;
         Vector2 size = Vector2.Scale(aimCenter.rect.size, transform.lossyScale);
         var rect = new Rect((Vector2)aimCenter.position - (size * aimCenter.pivot), size);
         
