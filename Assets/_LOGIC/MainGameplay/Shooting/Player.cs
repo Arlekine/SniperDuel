@@ -61,7 +61,6 @@ public class Player : Shooter
         if (_leanFinger == null)
         {
             _leanFinger = finger;
-            
             _animator.SetTrigger("Aim");
             StartAiming();
         }
@@ -74,7 +73,6 @@ public class Player : Shooter
         {
             if (_isMainAimingPart)
             {
-                
                 _aimSequemce?.Kill();
                 Shoot();
                 _leanFinger = null;

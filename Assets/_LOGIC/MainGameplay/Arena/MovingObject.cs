@@ -13,6 +13,8 @@ public class MovingObject : MonoBehaviour
     private float _lerpTimeMod;
     private float _currentMovePos;
 
+    bool _stop;
+
     private void Awake()
     {
         var initialDistance = (transform.position - _firstPoint.position).magnitude;
@@ -37,7 +39,26 @@ public class MovingObject : MonoBehaviour
                 _currentMovePos = 0;
         }
 
-        transform.position = Vector3.Lerp(_firstPoint.position, _secondPoint.position, _currentMovePos);
+
+        transform.position = Vector3.LerpUnclamped(_firstPoint.position, _secondPoint.position, _currentMovePos);
         _currentMovePos += Time.deltaTime * _lerpTimeMod;
+
+
+        if (transform.position == _secondPoint.position && !_stop)
+            StartCoroutine(Delay());
+    }
+
+
+    IEnumerator Delay()
+    {
+        _stop = true;
+
+       yield return new WaitForSeconds(2);
+
+        transform.position = _firstPoint.position;
+
+        yield return new WaitForSeconds(0.5f);
+
+        _stop = false;
     }
 }

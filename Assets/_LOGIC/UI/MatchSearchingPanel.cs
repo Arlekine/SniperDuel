@@ -31,7 +31,7 @@ public class MatchSearchingPanel : MonoBehaviour
         _hourglass.SetActive(true);
         _matchStartText.SetActive(false);
         
-        yield return new WaitForSeconds(Random.Range(3f, 5f));
+        yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
         
         _searchingText.SetActive(false);
         _foundText.SetActive(true);
@@ -42,7 +42,7 @@ public class MatchSearchingPanel : MonoBehaviour
         for (int i = 3; i >= 1; i--)
         {
             _matchStartCountText.text = i.ToString();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.8f);
         }
         
         _matchStartCountText.text = "0";

@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: Leage 0
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1a9caa79d8aa8d4488db45fc634a8682, type: 3}
-  leageArena: {fileID: 5359856522626678669, guid: f12b05e893432ba49a034d86678284e2, type: 3}
+  leageArena: {fileID: 5359856522626678669, guid: 3eed3da0c8b5747f9a671a20fad46c53, type: 3}
   enemyToSpawn:
   - {fileID: 1835741177381136765, guid: 1c7d835f1cd1d6442a62ac0549b4d9c6, type: 3}
   - {fileID: 1835741177381136765, guid: 1c7d835f1cd1d6442a62ac0549b4d9c6, type: 3}
   - {fileID: 1835741177381136765, guid: 1c7d835f1cd1d6442a62ac0549b4d9c6, type: 3}
   - {fileID: 1835741177381136765, guid: 1c7d835f1cd1d6442a62ac0549b4d9c6, type: 3}
   - {fileID: 1835741177381136765, guid: 1c7d835f1cd1d6442a62ac0549b4d9c6, type: 3}
-  _enemiedNickNames: []
